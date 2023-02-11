@@ -3,7 +3,7 @@ VALUES  ("Sales"),
         ("Support"), 
         ("Development");
 
-INSERT INTO position (r_name, salary, dep_id)
+INSERT INTO jobPosition (r_name, salary, dep_id)
 VALUES  ("Manager", 110000, 1),
         ("Employee-Lead", 80000, 2),
         ("Employee", 60000, 3);
