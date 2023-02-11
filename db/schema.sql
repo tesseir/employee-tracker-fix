@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS employee_roster_db;
 CREATE DATABASE IF NOT EXISTS employee_roster_db;
 
-USE employee_roster;
+USE employee_roster_db;
 
 CREATE TABLE department (
   id int auto_increment primary key,
@@ -9,7 +9,7 @@ CREATE TABLE department (
   date_updated DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
-CREATE TABLE position (
+CREATE TABLE jobPosition (
   id int auto_increment primary key,
   pos_name varchar(100),
   salary decimal,
@@ -25,5 +25,5 @@ CREATE TABLE employee (
   pos_id int not null,
   manager_id int,
   date_updated DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
-  foreign key (pos_id) references position(id),
+  foreign key (jobPosition_id) references jobPosition(id)
 );
