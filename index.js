@@ -1,5 +1,6 @@
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
+const mysqlPromise = require('mysql2/promise');
 const cTable = require('console.table');
 
 require('dotenv').config();
@@ -9,6 +10,7 @@ const connection = mysql.createConnection({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE
+  port: process.env.DB_PORT
 },connection.connect((err) => {
   if (err) { console.log(err.message);}
   console.log("db " + connection.state);
@@ -49,7 +51,9 @@ function start() {
   }})};
 
 async function viewDepartments() {
-
+  try {
+    const queary = 'SELECT * FROM department';
+  }
 }
 
 async function addDepartment() {
