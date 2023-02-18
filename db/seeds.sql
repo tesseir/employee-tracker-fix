@@ -1,21 +1,4 @@
-INSERT INTO department (d_name) 
-VALUES  ("Sales"), 
-        ("Support"), 
-        ("Development");
+INSERT INTO `department` VALUES (1,'IT','2023-02-17 22:45:58'),(2,'Parks and Rec','2023-02-17 22:45:58'),(3,'Janitorial','2023-02-17 22:46:36');
 
-INSERT INTO jobPosition (pos_name, salary, dep_id)
-VALUES  ("Manager", 110000, 1),
-        ("Employee-Lead", 80000, 2),
-        ("Employee", 60000, 3);
-
-INSERT INTO employee (first_name, last_inital, pos_id, manager_id)
-VALUES  ("Ariane", "M", 1, null),
-        ("Heather", "G", 1, null),
-        ("Joel", "T", 1, null),
-        ("Alice", "F", 2, 1),
-        ("Ibraheem", "J", 2, 2),
-        ("Ned", "D", 2, 3),
-        ("Tessa", "V", 3, 1),
-        ("Dylan", "Y", 3, 2),
-        ("Mustafa", "G", 3, 2),
-        ("Meredith", "O", 3, 3);
+INSERT INTO `jobPosition` VALUES (1,'manager',50000,'2023-02-17 22:48:35'),(2,'intern',30000,'2023-02-17 22:49:05');
+INSERT INTO `employee` VALUES (1,1,'tess','e',1,1,NULL,'2023-02-17 22:50:24'),(3,1,'tess','e',1,1,NULL,'2023-02-17 22:50:24');
