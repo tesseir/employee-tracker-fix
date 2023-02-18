@@ -24,7 +24,7 @@ const choiceMap = {
   'View all positions': viewPositions,
   'Add position': addPosition,
   'View all employees': viewEmployees,
-  'Add employee': viewEmployees, 
+  'Add employee': addEmployee, 
   'Update employee role': updateEmployeeRole,
 }
 
@@ -151,15 +151,10 @@ async function addPosition() {
         name: 'salary',
         type: 'input',
         message: 'Input Salary',
-      },
-      {
-        name: 'dep_id',
-        type: 'input',
-        message: 'What department?',
       }
     ]).then( response =>{
       const query = `INSERT INTO jobPosition (id, pos_name, salary, dep_id)
-      VALUES ('${response.id}', '${response.pos_name}, '${response.salary}', '${dep_id}');`;
+      VALUES ('${response.id}', '${response.pos_name}, '${response.salary}');`;
   
     
   
@@ -192,9 +187,120 @@ async function viewEmployees() {
 }
 
 async function addEmployee() {
+  try {
+    
+    inquirer
+    .prompt([
+      {
+        name: 'id',
+        type: 'input',
+        message: 'Employee ID?',
+      },
+      {
+        name: 'first_name',
+        type: 'input',
+        message: 'First name',
+      },
+      {
+        name: 'last_inital',
+        type: 'input',
+        message: 'Last Init',
+      },
+      {
+        name: 'dep_id',
+        type: 'input',
+        message: 'Department ID',
+      },
+      {
+        name: 'jobPosition_id',
+        type: 'input',
+        message: 'Job position id',
+      },
+      {
+        name: 'manager_id',
+        type: 'input',
+        message: 'Manager id',
+      }
+    ]).then( response =>{
+      let mgrId = response.manager_id == '' ? 'NULL': `${response.manager_id}`
+      const query = `INSERT INTO employee (id, first_name, last_inital, dep_id, jobPosition_id, manager_id)
+      VALUES ('${response.id}', '${response.first_name}', '${response.last_inital}', ${response.dep_id}, ${response.jobPosition_id}, ${mgrId});`;
+  
+    
+  
+      connection.execute(query, (err, rows, fields) => {
+  console.log(err);
+        console.log(JSON.stringify(rows));
+        start();
+  
+  
+      });
+    })
+   
+  } catch {
 
+  }
 }
 
 async function updateEmployeeRole() {
+  try {
+    
+    inquirer
+    .prompt([
+      {
+        name: 'id',
+        type: 'input',
+        message: 'Employee ID?',
+      },
+      {
+        name: 'first_name',
+        type: 'input',
+        message: 'First name',
+      },
+      {
+        name: 'last_inital',
+        type: 'input',
+        message: 'Last Init',
+      },
+      {
+        name: 'dep_id',
+        type: 'input',
+        message: 'Department ID',
+      },
+      {
+        name: 'jobPosition_id',
+        type: 'input',
+        message: 'Job position id',
+      },
+      {
+        name: 'manager_id',
+        type: 'input',
+        message: 'Manager id',
+      }
+    ]).then( response =>{
+      let mgrId = response.manager_id == '' ? 'NULL': `${response.manager_id}`
+      const query = `UPDATE employee
 
+       SET first_name = '${response.first_name}',   
+           last_inital = '${response.last_inital}',
+           dep_id = ${response.dep_id},
+           jobPosition_id = ${response.jobPosition_id},
+           manager_id = ${mgrId}
+       
+       WHERE id = ${response.id}`
+  
+    
+  
+      connection.execute(query, (err, rows, fields) => {
+  console.log(err);
+        console.log(JSON.stringify(rows));
+        start();
+  
+  
+      });
+    })
+   
+  } catch {
+
+  }
 }
