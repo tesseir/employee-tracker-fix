@@ -5,16 +5,23 @@ const cTable = require('console.table');
 
 require('dotenv').config();
 
+
 const connection = mysql.createConnection({
   host: 'localhost',
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE
+  database: process.env.DB_DATABASE,
   port: process.env.DB_PORT
-},connection.connect((err) => {
+}
+/*,connection.connect((err) => {
   if (err) { console.log(err.message);}
   console.log("db " + connection.state);
-}));  
+})*/);  
+
+const choiceMap = {
+  'View all departments':viewDepartments,
+  'Add Department':addDepartment,
+}
 
 start();
 function start() {
@@ -25,34 +32,45 @@ function start() {
     message: 'What would you like to do?',
     choices: ['View all departments','Add Department','View all positions','Add position','View all employees', 'Add employee', 'Update employee role'],
   })
-.then((choices) => {
+.then(async (choices) => {
+
+  await choiceMap[choices.nav]();
+/*
   switch(choices.nav) {
     case 'View all departments':
-      viewDepartments();
+      await viewDepartments();
       break;
     case 'Add Department':
-      addDepartment();
+      await addDepartment();
       break;
     case 'View all positions':
-      viewPositions();
+      await viewPositions();
       break;
     case 'Add position':
-      addPosition();
+      await addPosition();
       break;
     case 'View all employees':
-      viewEmployees();
+      await viewEmployees();
       break;
     case 'Add employee':
-      addEmployee();
+      await addEmployee();
       break;
     case 'Update employee role':
-      updateEmployeeRole();
+      await updateEmployeeRole();
       break;
-  }})};
+  }*/
+})};
 
 async function viewDepartments() {
   try {
-    const queary = 'SELECT * FROM department';
+    const query = 'SELECT * FROM department';
+    connection.query(query, (err,rows,fields )=>{
+      console.log(JSON.stringify(rows));
+      
+
+    });
+  } catch {
+
   }
 }
 

@@ -3,12 +3,12 @@ VALUES  ("Sales"),
         ("Support"), 
         ("Development");
 
-INSERT INTO jobPosition (r_name, salary, dep_id)
+INSERT INTO jobPosition (pos_name, salary, dep_id)
 VALUES  ("Manager", 110000, 1),
         ("Employee-Lead", 80000, 2),
         ("Employee", 60000, 3);
 
-INSERT INTO employees (first_name, last_initial, role_id, manager_id)
+INSERT INTO employee (first_name, last_inital, pos_id, manager_id)
 VALUES  ("Ariane", "M", 1, null),
         ("Heather", "G", 1, null),
         ("Joel", "T", 1, null),
@@ -18,4 +18,4 @@ VALUES  ("Ariane", "M", 1, null),
         ("Tessa", "V", 3, 1),
         ("Dylan", "Y", 3, 2),
         ("Mustafa", "G", 3, 2),
-        ("Meredith", "O", 3, 3),
+        ("Meredith", "O", 3, 3);
