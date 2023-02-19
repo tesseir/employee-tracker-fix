@@ -18,11 +18,10 @@ CREATE TABLE jobPosition (
 
 CREATE TABLE employee (
   id int auto_increment primary key,
-  jobPosition_id int,
   first_name varchar(30),
   last_inital varchar(1),
-  pos_id int not null,
   dep_id int not null,
+  jobPosition_id int,
   manager_id int,
   date_updated DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
   foreign key (jobPosition_id) references jobPosition(id),
